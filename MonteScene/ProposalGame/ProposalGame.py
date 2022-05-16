@@ -90,8 +90,6 @@ class ProposalGame(ABC):
 
         :param prop:
         :type prop: Proposal
-        :param node:
-        :type node: Node
         :return:
         """
         assert prop in self.pool_curr or prop.type in NodesTypes.SPECIAL_NODES_LIST, \
