@@ -49,9 +49,7 @@ class MonteCarloSceneSearch:
             with open(settings_path, 'r') as f:
                 settings = yaml.safe_load(f)
             settings = convert_dict2namespace(settings)
-            self.settings = settings
-        else:
-            assert False, "Settings is not None"
+        self.settings = settings
 
         self.use_cuda = torch.cuda.is_available()
 
@@ -183,7 +181,8 @@ class MonteCarloSceneSearch:
 
         self.mc_tree.set_curr_node(next_node)
 
-        assert not self.mc_tree.get_curr_node().prop.type == NodesTypes.ENDNODE
+        # TODO remove this line
+        # assert not self.mc_tree.get_curr_node().prop.type == NodesTypes.ENDNODE
 
         return best_cand, halt_descent
 
