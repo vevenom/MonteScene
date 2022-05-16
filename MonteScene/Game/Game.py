@@ -84,7 +84,7 @@ class Game(ABC):
         """
         return self.pool_curr, self.prop_seq
 
-    def single_step(self, prop):
+    def step(self, prop):
         """
         Take a single step in the game.
 

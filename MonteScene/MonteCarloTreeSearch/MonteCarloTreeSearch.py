@@ -243,7 +243,7 @@ class MonteCarloSceneSearch:
                 sim_node_curr = random.choice(sim_child_nodes)  # type: Node
 
                 self.mc_tree.set_curr_node(sim_node_curr)
-                self.game.single_step(sim_node_curr.prop)
+                self.game.step(sim_node_curr.prop)
 
                 endnode_reached = sim_node_curr.prop.type == NodesTypes.ENDNODE
                 if endnode_reached:
@@ -366,7 +366,7 @@ class MonteCarloSceneSearch:
                     is_end = True
                     assert False, "Why was descent halted?"
                 else:
-                    self.game.single_step(self.mc_tree.get_curr_node().prop)
+                    self.game.step(self.mc_tree.get_curr_node().prop)
                     if self.mc_tree.get_curr_node().is_new:
                         # SIMULATE AND UPDATE
                         score_curr = self.simulate_and_update()
