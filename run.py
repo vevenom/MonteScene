@@ -1,7 +1,6 @@
 from MonteScene.Game import Game
-from MonteScene.MonteCarloTreeSearch.MCTSLogger import MCTSLogger
-from MonteScene.MonteCarloTreeSearch.MonteCarloTreeSearch import MonteCarloSceneSearch
-
+from MonteScene.MonteCarloTreeSearch import MCTSLogger
+from MonteScene.MonteCarloTreeSearch import MonteCarloSceneSearch
 
 if __name__ == '__main__':
         # Create Game
