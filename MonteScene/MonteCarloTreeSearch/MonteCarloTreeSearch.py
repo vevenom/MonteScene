@@ -26,13 +26,15 @@ class MonteCarloSceneSearch:
         iter_cntr: iteration counter
 
     """
-    def __init__(self, game, mcts_logger=None, settings=None):
+    def __init__(self, game, mcts_logger=None, tree=None, settings=None):
         """
 
         :param game: game instance
         :type game: Game
         :param mcts_logger: MCTSLogger instance
         :type mcts_logger: MCTSLogger
+        :param tree: Tree instance
+        :type tree: Tree
         :param settings: settings containing rules for MCTS
         """
         self.game = game
@@ -55,7 +57,10 @@ class MonteCarloSceneSearch:
 
         assert self.settings.mcts.ucb_score_type in ScoreModes.VALID_SCORE_MODES, "UCB_SCORE_TYPE value %s is not supported" % self.settings.mcts.ucb_score_type
 
-        self.mc_tree = Tree(self.settings)
+        if tree is None:
+            self.mc_tree = Tree(self.settings)
+        else:
+            self.mc_tree = tree
 
         self.iter_cntr = -1
 
