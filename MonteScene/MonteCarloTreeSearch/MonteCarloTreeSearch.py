@@ -78,19 +78,21 @@ class MonteCarloSceneSearch:
         assert node.vis_n > 0
 
         exploit_term = node.get_score()
+        exploit_term = self.settings.mcts.exploit_coeff * exploit_term
 
         # Update current UCB weight based on linear decay
         current_explore_weight = (1 - self.iter_cntr / float(self.num_iters)) * self.settings.mcts.start_explore_coeff + \
                                  self.iter_cntr / float(self.num_iters) * self.settings.mcts.end_explore_coeff
 
         # Calculate exploitation
-        UCB_term = self.settings.mcts.exploit_coeff * exploit_term
+        UCB_term = exploit_term
 
         # Calculate exploration
         explore_term = np.sqrt(
-            2 * np.log(node.parent.sim_n) / node.vis_n)
+            2 * np.log(node.parent.vis_n) / node.vis_n)
+        explore_term = current_explore_weight * explore_term
 
-        UCB_term += current_explore_weight * explore_term
+        UCB_term += explore_term
 
         if return_term_scores:
             return UCB_term, (exploit_term, explore_term)
@@ -175,8 +177,8 @@ class MonteCarloSceneSearch:
                                              next_node.depth,
                                              next_node.vis_n,
                                              best_UCB,
-                                             self.settings.mcts.exploit_coeff * b_exploit_term,
-                                             self.settings.mcts.explore_coeff * b_explore_term
+                                             b_exploit_term,
+                                             b_explore_term
                                              ))
 
         self.mc_tree.set_curr_node(next_node)
@@ -270,7 +272,7 @@ class MonteCarloSceneSearch:
                     sim_is_end = True
                     self.update_tree(simulation_score)
 
-                    sim_scores.append(endnode_reached * simulation_score)
+                    sim_scores.append(endnode_reached * simulation_score.cpu().numpy())
 
                     sim_prop_seqs.append(prop_seq)
                     sim_optimizers.append(sim_node_curr.optimizer)
@@ -284,7 +286,7 @@ class MonteCarloSceneSearch:
         best_opt = sim_optimizers[best_prop_seq_ind]
         self.game.set_state(self.game.pool_curr, best_prop_seq)
 
-        self.mcts_logger.print_to_log('%d Simulations took %.4f secs' % (self.settings.mcts.numsimiter, time.time()-start_time))
+        self.mcts_logger.print_to_log('%d Simulations took %.4f secs' % (self.settings.mcts.num_sim_iter, time.time()-start_time))
 
         ret_score = max(sim_scores)
         return ret_score
