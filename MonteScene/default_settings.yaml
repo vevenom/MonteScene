@@ -1,0 +1,26 @@
+mcts:
+    num_iters: 2000
+    num_sim_iter: 1
+    exploit_coeff: 1.0
+    start_explore_coeff: 1.0
+    end_explore_coeff: 1.0
+    ucb_score_type: "MAX"
+    refinement:
+        optimize_steps: 0
+        optimizer_lr: 0
+        final_optimization_steps: 0
+tree:
+    sib_nodes_limit: 0
+    add_esc_nodes: True
+    vis_locked: True
+
+
+
+
+
+
+
+
+
+
+
