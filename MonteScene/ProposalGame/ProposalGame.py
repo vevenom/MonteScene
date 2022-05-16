@@ -8,7 +8,7 @@ from MonteScene.Tree import Node
 from MonteScene.Proposal import Proposal
 
 
-class Game(ABC):
+class ProposalGame(ABC):
     """
     Abstract class representing Game. It serves as a base class for implementing other Games.
 
