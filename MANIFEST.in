@@ -1,0 +1,2 @@
+include MonteScene/default_settings.yaml
+recursive-include data *
