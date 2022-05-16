@@ -134,9 +134,6 @@ class ProposalGame(ABC):
 
         :param prop_seq: Sequence of proposals. If None, uses self.prop_seq instead
         :type prop_seq: List[Proposal]
-        :param props_optimizer: Optimizer. Enables optimization during score calculation. If None, optimization
-        step is not performed
-        :type props_optimizer: PropsOptimizer
 
         :return: loss
         :rtype: torch.Tensor

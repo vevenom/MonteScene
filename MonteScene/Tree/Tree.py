@@ -2,9 +2,9 @@ import numpy as np
 from ordered_set import OrderedSet
 
 from MonteScene.Tree.constants import NodesTypes, ScoreModes
-from MonteScene.Tree.Node import Node
-from MonteScene.Proposal.Prop import Proposal
-from MonteScene.Game.Game import Game
+from MonteScene.Tree.Node.Node import Node
+from MonteScene.Proposal import Proposal
+from MonteScene.ProposalGame import ProposalGame
 
 class Tree(object):
     """
@@ -159,8 +159,8 @@ class Tree(object):
 
         :param node: node to get the children from
         :type node: Node
-        :param game: Game instance
-        :type game: Game
+        :param game: ProposalGame instance
+        :type game: ProposalGame
 
         :return: list of children nodes
         :rtype: List[Node]

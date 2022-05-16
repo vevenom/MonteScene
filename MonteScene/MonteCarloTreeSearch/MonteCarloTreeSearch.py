@@ -8,9 +8,9 @@ import os
 
 from MonteScene.MonteCarloTreeSearch.MCTSLogger import MCTSLogger
 from MonteScene.Tree.Tree import Tree
-from MonteScene.Tree.Node import Node
+from MonteScene.Tree.Node.Node import Node
 from MonteScene.Tree.constants import *
-from MonteScene.Game.Game import Game
+from MonteScene.ProposalGame import ProposalGame
 from ..utils import *
 
 
@@ -29,8 +29,8 @@ class MonteCarloSceneSearch:
     def __init__(self, game, mcts_logger=None, tree=None, settings=None):
         """
 
-        :param game: game instance
-        :type game: Game
+        :param game: ProposalGame instance
+        :type game: ProposalGame
         :param mcts_logger: MCTSLogger instance
         :type mcts_logger: MCTSLogger
         :param tree: Tree instance
@@ -80,8 +80,8 @@ class MonteCarloSceneSearch:
         exploit_term = node.get_score()
 
         # Update current UCB weight based on linear decay
-        current_explore_weight = (1 - self.iter_cntr / float(self.num_iter)) * self.settings.mcts.start_explore_coeff + \
-                             self.iter_cntr / float(self.num_iter) * self.settings.mcts.end_explore_coeff
+        current_explore_weight = (1 - self.iter_cntr / float(self.num_iters)) * self.settings.mcts.start_explore_coeff + \
+                                 self.iter_cntr / float(self.num_iters) * self.settings.mcts.end_explore_coeff
 
         # Calculate exploitation
         UCB_term = self.settings.mcts.exploit_coeff * exploit_term
@@ -225,7 +225,7 @@ class MonteCarloSceneSearch:
         sim_optimizers = []
 
         # Perform several simulations
-        for iter_cntr in range(self.settings.mcts.numsimiter):
+        for iter_cntr in range(self.settings.mcts.num_sim_iter):
             # TODO Does MultiSim work?
 
             # Start with curr node
@@ -326,14 +326,14 @@ class MonteCarloSceneSearch:
         score_curr = -1
         total_time = 0.
 
-        self.num_iter = self.settings.mcts.num_iter
+        self.num_iters = self.settings.mcts.num_iters
 
         # Iterate MCTS
-        while self.iter_cntr < self.num_iter - 1:
+        while self.iter_cntr < self.num_iters - 1:
             self.iter_cntr += 1
 
             st_iter_time = time.time()
-            self.mcts_logger.print_to_log('Starting iteration %d of %d' % (self.iter_cntr, self.num_iter))
+            self.mcts_logger.print_to_log('Starting iteration %d of %d' % (self.iter_cntr, self.num_iters))
             is_end = False
 
             # Start from the tree root and full pool of proposals

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 from torch.optim import Adam
 
-from MonteScene.Game import Game
+from MonteScene.ProposalGame import ProposalGame
 
 class PropsOptimizer():
     """

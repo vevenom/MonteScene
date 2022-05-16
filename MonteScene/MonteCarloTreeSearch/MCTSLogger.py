@@ -3,7 +3,7 @@ from graphviz import Digraph
 from abc import ABC, abstractmethod
 from typing import List
 
-from MonteScene.Game.Game import Game
+from MonteScene.ProposalGame import ProposalGame
 from MonteScene.Tree.Tree import Tree
 from MonteScene.Proposal.Prop import Proposal
 
@@ -12,14 +12,14 @@ class MCTSLogger(ABC):
     Abstract class representing Logger. Serves as a base class for task specific loggers
 
     Attributes:
-          game: game instance
+          game: ProposalGame instance
 
     """
     def __init__(self, game):
         """
 
-        :param game: game instance
-        :type game: Game
+        :param game: ProposalGame instance
+        :type game: ProposalGame
         """
 
         self.game = game
