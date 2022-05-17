@@ -108,8 +108,6 @@ class MCTSLogger(ABC):
                 return
             else:
                 child_scores = [c.get_score() for c in node_curr.children_nodes]
-                print(child_scores)
-
 
             child_scores = np.array(child_scores)
             top_k_child_inds = child_scores.argsort()[-K:]
