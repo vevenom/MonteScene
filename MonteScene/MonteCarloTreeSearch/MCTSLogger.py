@@ -104,23 +104,24 @@ class MCTSLogger(ABC):
         :return:
         """
         def addNodes(node_curr, curr_d):
-            if node_curr.child_nodes is None or len(node_curr.child_nodes) == 0:
+            if node_curr.children_nodes is None or len(node_curr.children_nodes) == 0:
                 return
             else:
-                child_scores = [c.get_score() for c in node_curr.child_nodes]
+                child_scores = [c.get_score() for c in node_curr.children_nodes]
+                print(child_scores)
 
 
             child_scores = np.array(child_scores)
             top_k_child_inds = child_scores.argsort()[-K:]
             for i in top_k_child_inds:
-                c = node_curr.child_nodes[i] # type: Node
+                c = node_curr.children_nodes[i] # type: Node
 
                 child_node_name = c.id
-                parent_node_name = c.visit_parent.id
+                parent_node_name = c.parent.id
 
                 score = c.get_score()
 
-                dot.node(child_node_name, 'score=%0.3f \n n=%d \n %s' % (score, c.sim_n, c.prop.id))
+                dot.node(child_node_name, 'score=%0.3f \n n=%d \n %s' % (score, c.vis_n, c.prop.id))
 
                 if c.explored_lock:
                     dot.attr('edge', color='red')
@@ -145,7 +146,7 @@ class MCTSLogger(ABC):
 
         curr_node = mc_tree.get_curr_node()
         dot.node(curr_node.id, 'score=%0.3f \n n=%d \n %s' %
-                 (curr_node.get_score(), curr_node.sim_n, curr_node.prop.id))
+                 (curr_node.get_score(), curr_node.vis_n, curr_node.prop.id))
 
         addNodes(curr_node, curr_d=curr_d)
 

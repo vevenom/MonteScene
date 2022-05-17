@@ -60,23 +60,27 @@ class Tree(object):
 
     def check_and_lock(self):
         """
-        Check and lock current node and the ancestors
+        Check and lock current node and the ancestors if all of their children are locked
 
         :return:
         """
 
-        curr_node = self.get_curr_node()
-        curr_node.explored_lock = True
+        tmp_curr_node = self.get_curr_node()
 
         while True:
-            # self.mcTree.currNode.numSim += 1
-            if self.get_curr_node().prop.type == NodesTypes.ROOTNODE:
+            all_children_locked = True
+            for child_node in self.get_curr_node().children_nodes:
+                if not child_node.explored_lock:
+                    all_children_locked = False
+                    break
+
+            if self.get_curr_node().prop.type == NodesTypes.ROOTNODE or not all_children_locked:
                 break
+
+            self.get_curr_node().explored_lock = True
             self.visit_parent()
 
-            self.get_curr_node().check_and_lock()
-
-        self.set_curr_node(curr_node)
+        self.set_curr_node(tmp_curr_node)
 
     def visit_parent(self):
         """

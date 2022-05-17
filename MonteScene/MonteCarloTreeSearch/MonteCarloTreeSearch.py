@@ -126,7 +126,7 @@ class MonteCarloSceneSearch:
                 next_node = cn
 
             # If node has been visited calculate the confidence. Otherwise select this node
-            if not cn.is_new:
+            if cn.vis_n >= self.settings.mcts.num_sim_iter:
                 if cn.explored_lock and not self.settings.tree.vis_locked:
                     continue
                 all_children_explored = False
@@ -245,6 +245,7 @@ class MonteCarloSceneSearch:
 
                 self.mc_tree.set_curr_node(sim_node_curr)
                 self.game.step(sim_node_curr.prop)
+                sim_node_curr.is_new = False
 
                 endnode_reached = sim_node_curr.prop.type == NodesTypes.ENDNODE
                 if endnode_reached:
@@ -270,11 +271,13 @@ class MonteCarloSceneSearch:
                     # Update scores
                     sim_is_end = True
                     self.update_tree(simulation_score)
+                    self.mc_tree.check_and_lock()
 
-                    sim_scores.append(endnode_reached * simulation_score.cpu().numpy())
+                    sim_scores.append(endnode_reached * simulation_score)
 
                     sim_prop_seqs.append(prop_seq)
                     sim_optimizers.append(sim_node_curr.optimizer)
+
 
         # Reset the state after simulation
         # self.game.set_state(pool_curr, prop_seq)
@@ -358,8 +361,11 @@ class MonteCarloSceneSearch:
                     if self.mc_tree.get_curr_node().is_new and self.settings.mcts.refinement.optimize_steps:
                         self.mc_tree.get_curr_node().add_PropOptimizer(self.game, self.settings)
 
+                    self.mc_tree.get_curr_node().is_new = False
+
                     score_curr = self.calc_score()
                     self.update_tree(score_curr)
+                    self.mc_tree.check_and_lock()
 
                     is_end = True
                 elif halt_descent:
@@ -368,7 +374,7 @@ class MonteCarloSceneSearch:
                     assert False, "Why was descent halted?"
                 else:
                     self.game.step(self.mc_tree.get_curr_node().prop)
-                    if self.mc_tree.get_curr_node().is_new:
+                    if self.mc_tree.get_curr_node().vis_n < self.settings.mcts.num_sim_iter:
                         # SIMULATE AND UPDATE
                         score_curr = self.simulate_and_update()
                         is_end = True

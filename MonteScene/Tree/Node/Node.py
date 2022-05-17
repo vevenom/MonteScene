@@ -91,7 +91,6 @@ class Node(object):
         # Increment the number of visits
         self.vis_n += 1
 
-
         if self.update_mode == ScoreModes.MAX_NODE_SCORE_MODE:
             if score > self.score:
                 self.score = score
@@ -101,8 +100,8 @@ class Node(object):
             assert False, "update_mode %s not supported" % str(self.update_mode)
 
         # Check the lock
-        if self.all_children_created:
-            self.check_and_lock()
+        # if self.all_children_created:
+        #     self.check_and_lock()
 
     def get_score(self):
         if self.update_mode == ScoreModes.MAX_NODE_SCORE_MODE:
@@ -121,13 +120,5 @@ class Node(object):
         :return:
         """
         self.optimizer = PropsOptimizer(game, settings)
-
-    def check_and_lock(self):
-        all_children_locked = len(self.children_nodes) < 1
-        for child in self.children_nodes:
-            if not child.explored_lock:
-                all_children_locked = False
-                break
-        self.explored_lock = all_children_locked
 
 
