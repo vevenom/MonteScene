@@ -75,7 +75,7 @@ class MonteCarloSceneSearch:
         """
         assert node.vis_n > 0
 
-        exploit_term = node.get_score()
+        exploit_term = self.mc_tree.get_node_score(node)
         exploit_term = self.settings.mcts.exploit_coeff * exploit_term
 
         # Update current UCB weight based on linear decay

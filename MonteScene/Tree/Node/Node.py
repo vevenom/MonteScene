@@ -5,6 +5,7 @@ from MonteScene.Tree.constants import *
 from MonteScene.Proposal.Prop import Proposal
 from MonteScene.Proposal.PropsOptimizer import PropsOptimizer
 from MonteScene.ProposalGame import ProposalGame
+from .NodeScore import NodeScore
 
 class Node(object):
     """
@@ -25,7 +26,7 @@ class Node(object):
         optimizer: Optimizer associated with the node
 
     """
-    def __init__(self, prop, parent, update_mode):
+    def __init__(self, prop, parent):
         """
 
         :param prop: proposal to be contained within the node
@@ -44,14 +45,7 @@ class Node(object):
         self.prop = prop
         self.parent = parent
 
-        self.update_mode = update_mode
-
-        if self.update_mode == ScoreModes.MAX_NODE_SCORE_MODE:
-            self.score = -np.inf
-        elif self.update_mode == ScoreModes.AVG_NODE_SCORE_MODE:
-            self.score = 0
-        else:
-            assert False, "update_mode %s not supported" % str(self.update_mode)
+        self.node_score = NodeScore()
 
         self.vis_n = 0
 
@@ -91,23 +85,18 @@ class Node(object):
         # Increment the number of visits
         self.vis_n += 1
 
-        if self.update_mode == ScoreModes.MAX_NODE_SCORE_MODE:
-            if score > self.score:
-                self.score = score
-        elif self.update_mode == ScoreModes.AVG_NODE_SCORE_MODE:
-            self.score += score
-        else:
-            assert False, "update_mode %s not supported" % str(self.update_mode)
+        self.node_score.update_score(score)
 
         # Check the lock
         # if self.all_children_created:
         #     self.check_and_lock()
 
-    def get_score(self):
-        if self.update_mode == ScoreModes.MAX_NODE_SCORE_MODE:
-            ret_score = self.score
-        elif self.update_mode == ScoreModes.AVG_NODE_SCORE_MODE:
-            ret_score = self.score / self.vis_n if self.vis_n > 0 else self.score
+    def get_score(self, update_mode):
+
+        ret_score = self.node_score.get_score(update_mode)
+        if update_mode == ScoreModes.AVG_NODE_SCORE_MODE:
+            ret_score = ret_score / self.vis_n if self.vis_n > 0 else ret_score
+
         return  ret_score
 
     def add_PropOptimizer(self, game, settings):

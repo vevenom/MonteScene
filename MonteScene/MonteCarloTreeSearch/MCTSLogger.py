@@ -107,7 +107,7 @@ class MCTSLogger(ABC):
             if node_curr.children_nodes is None or len(node_curr.children_nodes) == 0:
                 return
             else:
-                child_scores = [c.get_score() for c in node_curr.children_nodes]
+                child_scores = [mc_tree.get_node_score(c) for c in node_curr.children_nodes]
 
             child_scores = np.array(child_scores)
             top_k_child_inds = child_scores.argsort()[-K:]
@@ -117,7 +117,7 @@ class MCTSLogger(ABC):
                 child_node_name = c.id
                 parent_node_name = c.parent.id
 
-                score = c.get_score()
+                score = mc_tree.get_node_score(c)
 
                 dot.node(child_node_name, 'score=%0.3f \n n=%d \n %s' % (score, c.vis_n, c.prop.id))
 
@@ -144,7 +144,7 @@ class MCTSLogger(ABC):
 
         curr_node = mc_tree.get_curr_node()
         dot.node(curr_node.id, 'score=%0.3f \n n=%d \n %s' %
-                 (curr_node.get_score(), curr_node.vis_n, curr_node.prop.id))
+                 (mc_tree.get_node_score(curr_node), curr_node.vis_n, curr_node.prop.id))
 
         addNodes(curr_node, curr_d=curr_d)
 

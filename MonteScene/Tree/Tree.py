@@ -53,7 +53,9 @@ class Tree(object):
         update_mode = settings.mcts.ucb_score_type
         assert update_mode in ScoreModes.VALID_SCORE_MODES
 
-        self.root_node = Node(root_prop, parent=None, update_mode=update_mode)
+        self.update_mode = update_mode
+
+        self.root_node = Node(root_prop, parent=None)
         self.set_curr_node(self.root_node)
 
         Tree.__reset_static_vars__()
@@ -108,6 +110,19 @@ class Tree(object):
 
         return self.node_curr
 
+    def get_node_score(self, node, update_mode=None):
+        """
+
+        :param node:
+        :type node: Node
+        :return:
+        """
+
+        if update_mode is None:
+            update_mode = self.update_mode
+
+        return node.get_score(update_mode)
+
     def set_curr_node(self, node):
         """
 
@@ -140,7 +155,7 @@ class Tree(object):
                 final_prop_list.append(self.get_curr_node().prop)
 
             for child in self.get_curr_node().children_nodes:
-                child_score = child.get_score()
+                child_score = self.get_node_score(child)
 
                 if child_score > best_score:
                     next_node = child
@@ -243,12 +258,12 @@ class Tree(object):
 
             # Initialize children if there are any, otherwise create an endnode
             if len(child_props):
-                node.children_nodes = [Node(cp, node, node.update_mode) for cp in child_props]
+                node.children_nodes = [Node(cp, node) for cp in child_props]
                 node.all_children_created = True
             else:
                 end_prop = Tree.generate_new_end_prop()
 
-                node.children_nodes = [Node(end_prop, node, node.update_mode)]
+                node.children_nodes = [Node(end_prop, node)]
                 node.all_children_created = True
 
         return node.children_nodes
