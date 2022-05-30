@@ -207,7 +207,7 @@ class Tree(object):
 
                 if len(candidate_pool):
                     incompatible_pool = \
-                        OrderedSet([n.prop for n in node.visit_parent.get_existing_children_nodes() if
+                        OrderedSet([n.prop for n in node.parent.get_existing_children_nodes() if
                                     n.prop.type != NodesTypes.ESCNODE])
 
                     neighbours_pool = node.prop.neighbouring_proposals_set

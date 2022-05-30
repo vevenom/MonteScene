@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from ordered_set import OrderedSet
+from MonteScene.Tree.constants import NodesTypes
 
 class Proposal(ABC):
     """
@@ -15,7 +16,7 @@ class Proposal(ABC):
     # TODO Extend your task specific proposal class as a child of Proposal and implement additional functionalities for
     # TODO the child class
 
-    def __init__(self, prop_id, prop_type):
+    def __init__(self, prop_id, prop_type=NodesTypes.OTHERNODE):
         """
 
         :param prop_id: unique proposal id
