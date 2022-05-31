@@ -1,12 +1,11 @@
 # MonteScene
 
- 
-## Introduction
-
 MonteScene is a python module that simplifies implementation of efficient search algorithms based on Monte Carlo Tree 
 Search (MCTS), with optional simultaneous refinement, for applications in scene understanding. Through this module, we 
-want motivate and inspire developers and researchers to apply and further extend MonteScene for their own
+want to motivate and inspire developers and researchers to apply and further extend MonteScene for their own
  original applications. 
+ 
+## Introduction
 
 Historically, MCTS was commonly researched as an efficient search algorithm for playing games of high state-complexity 
 such as Chess, Go, and Shogi. As we draw inspiration from these successes, we define a _Proposals Selection Game_  as a 
@@ -28,8 +27,8 @@ by balancing exploitation and exploration.
 scene understanding problem that can be casted as a proposals selection game. 
 
 * Framework integrates base classes ``Proposal``, ``Game``, and ``MCTSLogger`` with basic functionalities
-that are common in all proposals selection games. User (you) can easily adapt MonteScene to a specific task through 
-derivation of these base classes and implementing task-specific functionalities (such as proposals generation, 
+that are common in all proposals selection games. Through class inheritance, it is easy to adapt base classes to a 
+specific task by implementing task-specific functionalities (such as proposals generation, 
 score calculation and visualizations). That is it! By modfying ``run.py`` script, the user can  quickly run MonteScene by 
 following provided instructions in the script. 
 
