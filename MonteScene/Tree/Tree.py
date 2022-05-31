@@ -1,7 +1,7 @@
 import numpy as np
 from ordered_set import OrderedSet
 
-from MonteScene.Tree.constants import NodesTypes, ScoreModes
+from MonteScene.constants.constants import NodesTypes, ScoreModes
 from MonteScene.Tree.Node.Node import Node
 from MonteScene.Proposal import Proposal
 from MonteScene.ProposalGame import ProposalGame

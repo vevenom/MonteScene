@@ -3,10 +3,9 @@ import torch
 from ordered_set import OrderedSet
 from typing import List
 
-from MonteScene.Tree.constants import *
-from MonteScene.Tree import Node
-from MonteScene.Proposal import Proposal
-
+from MonteScene.constants.constants import *
+# from MonteScene.Tree import Node
+# from MonteScene.Proposal import Proposal
 
 class ProposalGame(ABC):
     """

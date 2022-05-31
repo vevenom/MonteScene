@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..constants import ScoreModes
+from MonteScene.constants.constants import ScoreModes
 
 class NodeScore(object):
     """

@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from ordered_set import OrderedSet
-from MonteScene.Tree.constants import NodesTypes
+from MonteScene.constants.constants import NodesTypes
 
 class Proposal(ABC):
     """

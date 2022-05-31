@@ -1,11 +1,10 @@
-import numpy as np
 from ordered_set import OrderedSet
 
-from MonteScene.Tree.constants import *
-from MonteScene.Proposal.Prop import Proposal
+from MonteScene.constants.constants import *
 from MonteScene.Proposal.PropsOptimizer import PropsOptimizer
 from MonteScene.ProposalGame import ProposalGame
 from .NodeScore import NodeScore
+from MonteScene.Proposal import Proposal
 
 class Node(object):
     """
@@ -68,6 +67,18 @@ class Node(object):
 
         self.optimizer = None
 
+    def set_prop(self, prop: Proposal):
+        self.prop = prop
+
+    def change_node_id_and_children_id(self, new_id: int):
+        self.id = new_id
+        if self.children_nodes is None:
+            return
+
+        for cn in self.children_nodes:
+            cn.change_node_id_and_children_id(cn.prop.id + "_" + new_id)
+
+
     def get_existing_children_nodes(self):
         if self.prop.type == NodesTypes.ENDNODE:
             return []
@@ -78,6 +89,7 @@ class Node(object):
         if self.children_nodes is None:
             self.children_nodes = []
 
+        child.parent = self
         self.children_nodes.append(child)
 
     def update_node(self, score):

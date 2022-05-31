@@ -9,7 +9,7 @@ import os
 from MonteScene.MonteCarloTreeSearch.MCTSLogger import MCTSLogger
 from MonteScene.Tree.Tree import Tree
 from MonteScene.Tree.Node.Node import Node
-from MonteScene.Tree.constants import *
+from MonteScene.constants.constants import *
 from MonteScene.ProposalGame import ProposalGame
 from ..utils import *
 
