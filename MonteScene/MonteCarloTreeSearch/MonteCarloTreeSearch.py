@@ -53,7 +53,8 @@ class MonteCarloSceneSearch:
 
         self.use_cuda = torch.cuda.is_available()
 
-        assert self.settings.mcts.ucb_score_type in ScoreModes.VALID_SCORE_MODES, "UCB_SCORE_TYPE value %s is not supported" % self.settings.mcts.ucb_score_type
+        assert self.settings.mcts.ucb_score_type in ScoreModes.VALID_SCORE_MODES, \
+            "UCB_SCORE_TYPE value %s is not supported" % self.settings.mcts.ucb_score_type
 
         if tree is None:
             self.mc_tree = Tree(self.settings)
@@ -143,7 +144,8 @@ class MonteCarloSceneSearch:
                     is_existing_node = True
             else:
                 all_children_explored = False
-                self.mcts_logger.print_to_log('New node %s at depth %d' % (cn.prop.id, cn.depth))
+                if self.settings.mcts.logging.log_steps:
+                    self.mcts_logger.print_to_log('New node %s at depth %d' % (cn.prop.id, cn.depth))
 
                 best_UCB = np.inf
                 best_cand = cn.prop
@@ -153,7 +155,8 @@ class MonteCarloSceneSearch:
 
         if all_children_explored:
             halt_descent = True
-            self.mcts_logger.print_to_log(("All children explored. Locking node %s" % (curr_node.prop.id)))
+            if self.settings.mcts.logging.log_steps:
+                self.mcts_logger.print_to_log(("All children explored. Locking node %s" % (curr_node.prop.id)))
 
             assert False, "Check if everything is implemented correctly. This should never happen."
 
@@ -170,14 +173,15 @@ class MonteCarloSceneSearch:
         if is_existing_node:
             curr_node.all_children_created = True
 
-            self.mcts_logger.print_to_log('ModelID: %s, Depth: %d, numSim: %d, UCB %0.3f, Exploit: %0.3f, Explore: %0.3f'
-                                          % (next_node.prop.id,
-                                             next_node.depth,
-                                             next_node.vis_n,
-                                             best_UCB,
-                                             b_exploit_term,
-                                             b_explore_term
-                                             ))
+            if self.settings.mcts.logging.log_steps:
+                self.mcts_logger.print_to_log(
+                    'ModelID: %s, Depth: %d, numSim: %d, UCB %0.3f, Exploit: %0.3f, Explore: %0.3f' %
+                    (next_node.prop.id,
+                     next_node.depth,
+                     next_node.vis_n,
+                     best_UCB,
+                     b_exploit_term,
+                     b_explore_term))
 
         self.mc_tree.set_curr_node(next_node)
 
@@ -209,8 +213,11 @@ class MonteCarloSceneSearch:
 
         :return:
         """
-        self.mcts_logger.print_to_log('Starting simulation at node %s, depth %d' % (self.mc_tree.get_curr_node().prop.id,
-                                                                                    self.mc_tree.get_curr_node().depth))
+        if self.settings.mcts.logging.log_steps:
+            self.mcts_logger.print_to_log('Starting simulation at node %s, depth %d' %
+                                          (self.mc_tree.get_curr_node().prop.id,
+                                           self.mc_tree.get_curr_node().depth))
+
         self.mc_tree.get_curr_node().is_new = False
 
         pool_curr, prop_seq = self.game.get_state()
@@ -251,9 +258,9 @@ class MonteCarloSceneSearch:
                     if self.settings.mcts.refinement.optimize_steps:
                         sim_node_curr.add_PropOptimizer(self.game, self.settings)
 
-                    self.mcts_logger.print_to_log("Unfold time: %.3f" % (time.time() - start_time))
 
-                    if self.use_cuda:
+                    if self.use_cuda and self.settings.mcts.logging.log_time:
+                        self.mcts_logger.print_to_log("Unfold time: %.3f" % (time.time() - start_time))
                         start = torch.cuda.Event(enable_timing=True)
                         end = torch.cuda.Event(enable_timing=True)
 
@@ -262,7 +269,7 @@ class MonteCarloSceneSearch:
                     # Calculate score for selected proposals and optionally do refinement
                     simulation_score = self.game.calc_score_from_proposals(props_optimizer=sim_node_curr.optimizer)
 
-                    if self.use_cuda:
+                    if self.use_cuda and self.settings.mcts.logging.log_time:
                         end.record()
                         torch.cuda.synchronize()
                         self.mcts_logger.print_to_log("Score time: %.3f ms" % (start.elapsed_time(end)))
@@ -287,7 +294,9 @@ class MonteCarloSceneSearch:
         best_opt = sim_optimizers[best_prop_seq_ind]
         self.game.set_state(self.game.pool_curr, best_prop_seq)
 
-        self.mcts_logger.print_to_log('%d Simulations took %.4f secs' % (self.settings.mcts.num_sim_iter, time.time()-start_time))
+        if self.settings.mcts.logging.log_time:
+            self.mcts_logger.print_to_log('%d Simulations took %.4f secs' %
+                                          (self.settings.mcts.num_sim_iter, time.time()-start_time))
 
         ret_score = max(sim_scores)
         return ret_score
@@ -300,7 +309,8 @@ class MonteCarloSceneSearch:
         :return:
         """
 
-        self.mcts_logger.print_to_log('Updating tree with score %0.2f...' % score)
+        if self.settings.mcts.logging.log_steps:
+            self.mcts_logger.print_to_log('Updating tree with score %0.2f...' % score)
 
 
         curr_node = self.mc_tree.get_curr_node()
@@ -336,7 +346,9 @@ class MonteCarloSceneSearch:
             self.iter_cntr += 1
 
             st_iter_time = time.time()
-            self.mcts_logger.print_to_log('Starting iteration %d of %d' % (self.iter_cntr, self.num_iters))
+
+            if self.settings.mcts.logging.log_steps:
+                self.mcts_logger.print_to_log('Starting iteration %d of %d' % (self.iter_cntr, self.num_iters))
             is_end = False
 
             # Start from the tree root and full pool of proposals
@@ -345,7 +357,8 @@ class MonteCarloSceneSearch:
 
             # If root is locked, then all nodes in the tree have been visited.
             if self.mc_tree.get_curr_node().explored_lock and not self.settings.mcts.vis_locked:
-                self.mcts_logger.print_to_log('Root locked stopping...')
+                if self.settings.mcts.logging.log_steps:
+                    self.mcts_logger.print_to_log('Root locked stopping...')
                 break
 
             # Iterate tree nodes until the ENDNODE is reached
@@ -387,7 +400,9 @@ class MonteCarloSceneSearch:
 
             iter_time = time.time() - st_iter_time
             total_time += iter_time
-            self.mcts_logger.print_to_log("Iter time: %.3f ms" % iter_time)
+
+            if self.settings.mcts.logging.log_time:
+                self.mcts_logger.print_to_log("Iter time: %.3f ms" % iter_time)
 
             self.mcts_logger.log_mcts(iter=self.iter_cntr,
                             last_score=score_curr,
@@ -402,7 +417,8 @@ class MonteCarloSceneSearch:
                         mc_tree=self.mc_tree,
                         )
 
-        self.mcts_logger.print_to_log("Total search time: %.3f" % total_time)
+        if self.settings.mcts.logging.log_time:
+            self.mcts_logger.print_to_log("Total search time: %.3f" % total_time)
 
         self.mc_tree.reset_current_node()
         self.game.restart_game()
@@ -418,7 +434,8 @@ class MonteCarloSceneSearch:
             last_opt_time = time.time() - last_opt_st_time
             total_time += last_opt_time
 
-            self.mcts_logger.print_to_log("Total time after optimization: %.3f" % total_time)
+            if self.settings.mcts.logging.log_time:
+                self.mcts_logger.print_to_log("Total time after optimization: %.3f" % total_time)
 
         # Final log
         self.mcts_logger.log_final(mc_tree=self.mc_tree)

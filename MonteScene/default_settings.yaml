@@ -9,6 +9,10 @@ mcts:
         optimize_steps: 0
         optimizer_lr: 0
         final_optimization_steps: 0
+
+    logging:
+        log_time: True
+        log_steps: True
 tree:
     sib_nodes_limit: 0
     add_esc_nodes: True
