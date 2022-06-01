@@ -11,8 +11,9 @@ mcts:
         final_optimization_steps: 0
 
     logging:
-        log_time: True
-        log_steps: True
+        log_time: False
+        log_steps: False
+        log_iters: True
 tree:
     sib_nodes_limit: 0
     add_esc_nodes: True

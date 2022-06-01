@@ -347,8 +347,12 @@ class MonteCarloSceneSearch:
 
             st_iter_time = time.time()
 
-            if self.settings.mcts.logging.log_steps:
-                self.mcts_logger.print_to_log('Starting iteration %d of %d' % (self.iter_cntr, self.num_iters))
+            if self.settings.mcts.logging.log_iters:
+                self.mcts_logger.print_to_log('Starting MCTS iteration %d of %d' % (self.iter_cntr, self.num_iters))
+                self.mcts_logger.print_to_log("[%-50s] %d%%" %
+                                              ('=' * (int(100. * self.iter_cntr / self.num_iters) // 2),
+                                               int(100. * self.iter_cntr / self.num_iters)))
+
             is_end = False
 
             # Start from the tree root and full pool of proposals
