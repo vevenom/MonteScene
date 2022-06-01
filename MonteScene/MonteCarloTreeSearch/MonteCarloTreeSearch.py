@@ -227,7 +227,6 @@ class MonteCarloSceneSearch:
 
         # Perform several simulations
         for iter_cntr in range(self.settings.mcts.num_sim_iter):
-            # TODO Does MultiSim work?
 
             # Start with curr node
             sim_node_curr = node_curr
