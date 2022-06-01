@@ -1,4 +1,5 @@
 from ordered_set import OrderedSet
+import numpy as np
 
 from MonteScene.constants.constants import *
 from MonteScene.Proposal.PropsOptimizer import PropsOptimizer
@@ -107,7 +108,7 @@ class Node(object):
 
         ret_score = self.node_score.get_score(update_mode)
         if update_mode == ScoreModes.AVG_NODE_SCORE_MODE:
-            ret_score = ret_score / self.vis_n if self.vis_n > 0 else ret_score
+            ret_score = ret_score / self.vis_n if self.vis_n > 0 else -np.inf
 
         return  ret_score
 
