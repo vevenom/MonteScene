@@ -25,10 +25,21 @@ by balancing exploitation and exploration.
 
 ### MCSS -- Monte Carlo Scene Search for 3D Scene Understanding
 
-![MCSS example](https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif)
-<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif" width="40" height="40" />
+<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif?raw=true" width="200px">
 
+MonteScene is applied for 3D reconstruction of scene components, including structrural elements and CAD-models for furniture elements.
 
+[Video](https://www.youtube.com/watch?v=F6vPmQ-TQ2s) |
+[Paper](https://openaccess.thecvf.com/content/CVPR2021/html/Hampali_Monte_Carlo_Scene_Search_for_3D_Scene_Understanding_CVPR_2021_paper.html) | [Project Page](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/monte-carlo-scene-search-for-3d-scene-understanding/) 
+
+### MonteFloor -- Extending MCTS for Reconstructing Accurate Large-Scale Floor Plans
+
+<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/MonteFloor/floorsp_12.gif?raw=true" width="200px">
+
+MonteScene with refinement is applied for floor plan reconstruction task, using our framework for jointly selecting and refining polygonal proposals.
+
+[Video](https://www.youtube.com/watch?v=RJi4v5nQnfE&feature=emb_title) |
+[Paper](https://openaccess.thecvf.com/content/ICCV2021/html/Stekovic_MonteFloor_Extending_MCTS_for_Reconstructing_Accurate_Large-Scale_Floor_Plans_ICCV_2021_paper.html) | [Project Page](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/montefloor-extending-mcts-for-reconstructing-accurate-large-scale-floor-plans/)
 
 ## Key Features
 
