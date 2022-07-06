@@ -44,8 +44,6 @@ be noisy. This framework also supports joint selection and refinement of noisy p
 
 <img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif">
 
-![ha](https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif)
-
 MonteScene is applied for 3D reconstruction of scene components, including structrural elements and CAD-models for furniture elements.
 
 [Video](https://www.youtube.com/watch?v=F6vPmQ-TQ2s) |
