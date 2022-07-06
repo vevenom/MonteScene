@@ -4,6 +4,8 @@ MonteScene is a python module that simplifies implementation of efficient search
 Search (MCTS), with optional simultaneous refinement, for applications in scene understanding. Through this module, we 
 want to motivate and inspire developers and researchers to apply and further extend MonteScene for their own
  original applications. 
+ 
+_Note_: We are working on releasing documentation and toy examples in next few months. For now, you can use the issue system if you have more specific questions about using MonteScene for your own scene understanding tasks. 
 
 ## News 
 
