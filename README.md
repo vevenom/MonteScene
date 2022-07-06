@@ -131,7 +131,9 @@ with refinement scheme can be generalized to different problems in Scene Underst
 
 ## Setup
 
-Acitvate your virtual environment -> Clone this repository -> You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository. 
+1. Acitvate your virtual environment;
+2. Clone this repository;
+3. You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository and installing the required dependencies. 
 
 ## Contributors in Alphabetical Order
 
