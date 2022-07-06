@@ -21,6 +21,15 @@ ends and the final score is calculated representing the fitness of the selected 
 Our MonteScene implementation is used to efficiently find the optimal solution by replaying proposals selection game 
 by balancing exploitation and exploration. 
 
+## Projects Powered by MonteScene
+
+### MCSS -- Monte Carlo Scene Search for 3D Scene Understanding
+
+![MCSS example](https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif)
+<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif" width="40" height="40" />
+
+
+
 ## Key Features
 
 * Simple-to-use and flexible framework for integrating MonteScene (optionally with refinement) for any 
