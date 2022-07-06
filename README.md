@@ -11,13 +11,13 @@ want to motivate and inspire developers and researchers to apply and further ext
 
 ## TODO
 
-* [Coming Soon] PolygonGame Implementation 
+* [Coming Soon] PolygonGame implementation 
 
-* [In Progress] PolygonRefinementGame Implementation
+* [In Progress] PolygonRefinementGame implementation
 
-* [In Progress] 3DPrimitivesGame Implementation
+* [In Progress] 3DPrimitivesGame implementation
 
-* [Planned for future Release] Hill Climbing Baseline
+* [Planned for future Release] Hill Climbing baseline
 
 ## Introduction
 
