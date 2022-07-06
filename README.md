@@ -19,8 +19,6 @@ _Note_: We are working on releasing documentation and toy examples in next few m
 
 * [In Progress] 3DPrimitivesGame implementation
 
-* [Planned for future Release] Hill Climbing baseline
-
 ## Introduction
 
 Historically, MCTS was commonly researched as an efficient search algorithm for playing games of high state-complexity 
@@ -91,9 +89,6 @@ following provided instructions in the script.
 * Flexible settings that enable/disable certain features.
 
 * In Progress: Toy examples demonstrating how to use MonteScene for different applications in scene understanding.
-
-* TODO Additional baselines (e.g. Hill Climbing) that are typically useful for demonstating advantages
-of MonteScene.
 
 ## Setup
 
