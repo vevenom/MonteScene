@@ -4,7 +4,18 @@ MonteScene is a python module that simplifies implementation of efficient search
 Search (MCTS), with optional simultaneous refinement, for applications in scene understanding. Through this module, we 
 want to motivate and inspire developers and researchers to apply and further extend MonteScene for their own
  original applications. 
- 
+
+## News 
+
+[06.07.2022] MonteScene is public
+
+## TODO
+
+[Coming Soon] PolygonGame Implementation 
+[In Progress] PolygonRefinementGame Implementation
+[In Progress] 3DPrimitivesGame Implementation
+
+
 ## Introduction
 
 Historically, MCTS was commonly researched as an efficient search algorithm for playing games of high state-complexity 
@@ -52,13 +63,11 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 ### PolygonGame (Toy Example)
 
-<img src="https://github.com/vevenom/MonteScene/blob/main/example_images/polygongame.gif?raw=true
-?raw=true?raw=true" width="200px">
+<img src="https://github.com/vevenom/MonteScene/blob/main/example_images/polygongame.gif?raw=true" width="200px">
 
-MonteScene is applied for selecting 2d polygons in an input image. Authored by: [nik-por](https://github.com/nik-por)
+MonteScene is applied for selecting 2d polygons in an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
 
-
-
+(Implemenation will be public soon!)
 
 ## Key Features
 
@@ -80,11 +89,8 @@ of MonteScene.
 
 ## Setup
 
-TODO
+Acitvate your virtual environment -> Clone this repository -> You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository. 
 
-## Toy Examples
-
-TODO
 
 ## Citation
 
@@ -120,7 +126,7 @@ respect to the input scene.
 * "MCTS with Refinement for Proposals Selection Games in Scene Understanding" is an extension showing that our MCTS
 with refinement scheme can be generalized to different problems in Scene Understanding.
 
-**Not online yet**
+**Not available yet**
 
 
 ## License
