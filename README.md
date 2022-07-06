@@ -93,6 +93,12 @@ following provided instructions in the script.
 * TODO Additional baselines (e.g. Hill Climbing) that are typically useful for demonstating advantages
 of MonteScene.
 
+## Setup
+
+1. Acitvate your virtual environment;
+2. Clone this repository;
+3. You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository and installing the required dependencies.
+
 ## Citation
 
 MonteScene is a result of our findings from several publications. Hence, if you use MonteScene in your 
@@ -127,13 +133,7 @@ respect to the input scene.
 * "MCTS with Refinement for Proposals Selection Games in Scene Understanding" is an extension showing that our MCTS
 with refinement scheme can be generalized to different problems in Scene Understanding.
 
-**Not available yet**
-
-## Setup
-
-1. Acitvate your virtual environment;
-2. Clone this repository;
-3. You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository and installing the required dependencies. 
+**Not available yet** 
 
 ## Contributors in Alphabetical Order
 
