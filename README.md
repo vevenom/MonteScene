@@ -43,11 +43,20 @@ MonteScene with refinement is applied for floor plan reconstruction task, using 
 
 ### MonteRoom -- MCTS with Refinement for Proposals Selection Games in Scene Understanding
 
+<img src="https://github.com/vevenom/MonteScene/blob/main/example_images/monteroom.gif?raw=true?raw=true" width="200px">
+
+
 MonteScene with refinement is applied for 3D room layout estimation from single images, using our framework for jointly selecting and refining 3d planar  polygonal proposals.
 
-
-
 (Details not available yet)
+
+### PolygonGame (Toy Example)
+
+<img src="https://github.com/vevenom/MonteScene/blob/main/example_images/polygongame.gif?raw=true
+?raw=true?raw=true" width="200px">
+
+MonteScene is applied for selecting 2d polygons in an input image. Authored by: [nik-por](https://github.com/nik-por)
+
 
 
 
