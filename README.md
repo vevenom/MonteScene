@@ -42,7 +42,7 @@ be noisy. This framework also supports joint selection and refinement of noisy p
 
 ### MCSS -- Monte Carlo Scene Search for 3D Scene Understanding
 
-<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif?raw=true" width="200px">
+<img src="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Images/team_lepetit/stekovic/teaser_big2.gif?raw=true">
 
 MonteScene is applied for 3D reconstruction of scene components, including structrural elements and CAD-models for furniture elements.
 
