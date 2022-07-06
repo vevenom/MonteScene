@@ -73,7 +73,7 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 MonteScene is applied for selecting 2d polygons in an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
 
-(Implemenation will be public soon!)
+(Implemenation will be public soon! Expected Release Date: July/August 2022 )
 
 ## Key Features
 
@@ -132,6 +132,12 @@ with refinement scheme can be generalized to different problems in Scene Underst
 ## Setup
 
 Acitvate your virtual environment -> Clone this repository -> You can install MonteScene as a package by running ``` pip install . ``` from the root directory of this repository. 
+
+## Contributors in Alphabetical Order
+
+ * Shreyas Hampali, Chetan S. Kumar, Alireza Moradi, Mahdi Rad, Sayan Deb Sarkar, Sinisa Stekovic
+ 
+ * Research Supervisors: Friedrich Fraundorfer and Vincent Lepetit
 
 
 ## License
