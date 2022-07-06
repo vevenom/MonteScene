@@ -67,7 +67,9 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 (Details not available yet)
 
-### PolygonGame (Toy Example)
+## Toy Examples
+
+### PolygonGame
 
 <img src="https://github.com/vevenom/MonteScene/blob/main/example_images/polygongame.gif?raw=true" width="200px">
 
