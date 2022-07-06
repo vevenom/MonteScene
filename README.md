@@ -71,7 +71,7 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 <img src="https://github.com/vevenom/MonteScene/blob/main/example_images/polygongame.gif?raw=true" width="200px">
 
-MonteScene is applied for selecting 2d polygons in an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
+MonteScene is applied for selecting 2d polygon proposals that best fit an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
 
 (Implemenation will be public soon! Expected Release Date: July/August 2022 )
 
