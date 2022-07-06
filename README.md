@@ -41,6 +41,16 @@ MonteScene with refinement is applied for floor plan reconstruction task, using 
 [Video](https://www.youtube.com/watch?v=RJi4v5nQnfE&feature=emb_title) |
 [Paper](https://openaccess.thecvf.com/content/ICCV2021/html/Stekovic_MonteFloor_Extending_MCTS_for_Reconstructing_Accurate_Large-Scale_Floor_Plans_ICCV_2021_paper.html) | [Project Page](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/montefloor-extending-mcts-for-reconstructing-accurate-large-scale-floor-plans/)
 
+### MonteRoom -- MCTS with Refinement for Proposals Selection Games in Scene Understanding
+
+MonteScene with refinement is applied for 3D room layout estimation from single images, using our framework for jointly selecting and refining 3d planar  polygonal proposals.
+
+
+
+(Details not available yet)
+
+
+
 ## Key Features
 
 * Simple-to-use and flexible framework for integrating MonteScene (optionally with refinement) for any 
