@@ -65,7 +65,7 @@ MonteScene with refinement is applied for floor plan reconstruction task, using 
 
 MonteScene with refinement is applied for 3D room layout estimation from single images, using our framework for jointly selecting and refining 3d planar  polygonal proposals.
 
-(Details not available yet)
+[Paper](https://arxiv.org/abs/2207.03204)
 
 ## Toy Examples
 
@@ -129,10 +129,18 @@ respect to the input scene.
 }
 ```
 
-* "MCTS with Refinement for Proposals Selection Games in Scene Understanding" is an extension showing that our MCTS
+* ["MCTS with Refinement for Proposals Selection Games in Scene Understanding"](https://arxiv.org/abs/2207.03204) is an extension showing that our MCTS
 with refinement scheme can be generalized to different problems in Scene Understanding.
 
-**Not available yet** 
+```bibtex
+@misc{
+  author = {Stekovic, Sinisa and Rad, Mahdi and Moradi, Alireza and Fraundorfer, Friedrich and Lepetit, Vincent},
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), Artificial Intelligence (cs.AI), Computer Science and Game Theory (cs.GT), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {MCTS with Refinement for Proposals Selection Games in Scene Understanding},
+  publisher = {arXiv},
+  year = {2022}
+  }
+```
 
 ## Contributors in Alphabetical Order
 
