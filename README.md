@@ -75,7 +75,9 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 MonteScene is applied for selecting 2d polygon proposals that best fit an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
 
-[Code](https://github.com/nik-por/MonteScene.Examples.Polygon)
+
+[Code](https://github.com/nik-por/MonteScene.Examples.Polygon) (Documentation not available yet)
+
 ## Key Features
 
 * Simple-to-use and flexible framework for integrating MonteScene (optionally with _refinement_) for any 
