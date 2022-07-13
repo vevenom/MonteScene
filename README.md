@@ -9,6 +9,8 @@ _Note_: We are working on releasing documentation and toy examples in next few m
 
 ## News 
 
+* [13.7.2022] PolygonGame is now released
+
 * [06.07.2022] MonteScene is public
 
 ## TODO
@@ -75,8 +77,7 @@ MonteScene with refinement is applied for 3D room layout estimation from single 
 
 MonteScene is applied for selecting 2d polygon proposals that best fit an input image. Bachelor project authored by: [nik-por](https://github.com/nik-por)
 
-(Implemenation will be public soon! Expected Release Date: July/August 2022 )
-
+[Code](https://github.com/nik-por/MonteScene.Examples.Polygon)
 ## Key Features
 
 * Simple-to-use and flexible framework for integrating MonteScene (optionally with _refinement_) for any 
