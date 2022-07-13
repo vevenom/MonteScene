@@ -15,8 +15,6 @@ _Note_: We are working on releasing documentation and toy examples in next few m
 
 ## TODO
 
-* [Coming Soon] PolygonGame implementation 
-
 * [In Progress] PolygonRefinementGame implementation
 
 * [In Progress] 3DPrimitivesGame implementation
