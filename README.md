@@ -9,9 +9,9 @@ _Note_: We are working on releasing documentation and toy examples in next few m
 
 ## News 
 
-* [13.7.2022] PolygonGame is now released
+* [13.7.2022] The first toy example, PolygonGame, is now released.
 
-* [06.07.2022] MonteScene is public
+* [06.07.2022] MonteScene is public.
 
 ## TODO
 
