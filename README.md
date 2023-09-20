@@ -13,11 +13,6 @@ _Note_: We are working on releasing documentation and toy examples in next few m
 
 * [06.07.2022] MonteScene is public.
 
-## TODO
-
-* [In Progress] PolygonRefinementGame implementation
-
-* [In Progress] 3DPrimitivesGame implementation
 
 ## Introduction
 
